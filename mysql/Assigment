@@ -1,0 +1,435 @@
+ysql> Show Databases;
++---------------------+
+| Database            |
++---------------------+
+| information_schema  |
+| mysql               |
+| performance_schema  |
+| student_information |
+| sys                 |
++---------------------+
+5 rows in set (0.01 sec)
+
+mysql> use student_information
+Database changed
+mysql> create table students (
+    -> id int primary key auto_increment,
+    -> name varchar(100) not null,
+    -> email varchar(100) not null,
+    -> mobile_no bigint not null,
+    -> password varchar(100) not null,
+    -> gender char(1) not null,
+    -> dob date,
+    -> created_date timestamp not null default current_timestamp,
+    -> unique (email),
+    -> check ( gender in ('M','F'))
+    -> ); 
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> create table student_class (
+    -> id int primary key auto_increment,
+    -> student_id int not null,
+    -> class int not null,
+    -> status varchar(20) not null,
+    -> foreign_key (student_id) references students(id),
+    -> check( class >= 1 and class <=12),
+    -> check (status in ('ACTIVE','INACTIVE'))
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(student_id) references students(id),
+check( class >= 1 and class <=12),
+check (' at line 6
+mysql> create table student_class ( id int primary key auto_increment, student_id int not null, class int not null, status varchar(20) not null, foreign key (student_id) references students(id), check( class >=
+1 and class <=12), check (status in ('ACTIVE','INACTIVE')) );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> desc table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> desc students;
++--------------+--------------+------+-----+-------------------+-------------------+
+| Field        | Type         | Null | Key | Default           | Extra             |
++--------------+--------------+------+-----+-------------------+-------------------+
+| id           | int          | NO   | PRI | NULL              | auto_increment    |
+| name         | varchar(100) | NO   |     | NULL              |                   |
+| email        | varchar(100) | NO   | UNI | NULL              |                   |
+| mobile_no    | bigint       | NO   |     | NULL              |                   |
+| password     | varchar(100) | NO   |     | NULL              |                   |
+| gender       | char(1)      | NO   |     | NULL              |                   |
+| dob          | date         | YES  |     | NULL              |                   |
+| created_date | timestamp    | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
++--------------+--------------+------+-----+-------------------+-------------------+
+8 rows in set (0.00 sec)
+
+mysql> desc student_class;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| id         | int         | NO   | PRI | NULL    | auto_increment |
+| student_id | int         | NO   | MUL | NULL    |                |
+| class      | int         | NO   |     | NULL    |                |
+| status     | varchar(20) | NO   |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into students (id,name,email,moblie_no,password,gender,dob,created_date) values (1,'Deepak','deepakthirup@email.com',8925003062,'Aishu','M','2003-03-13','2021-02-12'),(2,'vimal',vimalraj@email.com',7878234567,'Vimal@12','M','2002-10-11','2021-02-14'),(3,'Hadian','hadienarul@email.com',1233211234,'Hadien@123','M','2002-02-01','2021-02-13'),(4,'Aswath','Aswath@email.com','5678766785','Aswath@1231','M','2004-02-24','2021-02-12');
+    '> ^C;
+;
+^C
+mysql> insert into students (id,name,email,moblie_no,password,gender,dob,created_date) values (1,'Deepak','deepakthirup@email.com',8925003062,'Aishu','M','2003-03-13','2021-02-12'),(2,'vimal',vimalraj@email.com',7878234567,'Vimal@12','M','2002-10-11','2021-02-14'),(3,'Hadian','hadienarul@email.com',1233211234,'Hadien@123','M','2002-02-01','2021-02-13'),(4,'Aswath','Aswath@email.com','5678766785','Aswath@1231','M','2004-02-24','2021-02-12');
+    '> ^C;
+;
+^C
+mysql> insert into students (id,name,email,moblie_no,password,gender,dob,created_date) values (1,'Deepak','deepakthirup@email.com',8925003062,'Aishu','M','2003-03-13','2021-02-12');
+ERROR 1054 (42S22): Unknown column 'moblie_no' in 'field list'
+mysql> insert into students (id,name,email,mobile_no,password,gender,dob,created_date) values (1,'Deepak','deepakthirup@email.com',8925003062,'Aishu','M','2003-03-13','2021-02-12')
+    -> ^C;
+;
+^C
+mysql> insert into students (id,name,email,mobile_no,password,gender,dob,created_date) values (1,'Deepak','deepakthirup@email.com',8925003062,'Aishu','M','2003-03-13','2021-02-12');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into students (id,name,email,moblie_no,password,gender,dob,created_date) values (2,'vimal',vimalraj@email.com',7878234567,'Vimal@12','M','2002-10-11','2021-02-14');
+    '> ^C;
+;
+^C
+mysql> insert into students (id,name,email,moblie_no,password,gender,dob,created_date) values (2,'vimal',vimalraj@email.com',7878234567,'Vimal@12','M','2002-10-11','2021-02-14');
+    '> ^C;
+;
+^C
+mysql> insert into students (id,name,email,moblie_no,password,gender,dob,created_date) values (2,'vimal',vimalraj@email.com',7878234567,'Vimal@12','M','2002-10-11','2021-02-14');
+    '> ^C;
+;
+^C
+mysql> insert into students (id,name,email,mobile_no,password,gender,dob,created_date) values (1,'Deepak','deepakthirup@email.com',8925003062,'Aishu','M','2003-03-13','2021-02-12');
+ERROR 1062 (23000): Duplicate entry '1' for key 'students.PRIMARY'
+mysql> insert into students (id,name,email,mobile_no,password,gender,dob,created_date) vlaues (2,'vimal',vimalraj@email.com',7878234567,'Vimal@12','M','2002-10-11','2021-02-14');
+    '> 2,'vimal',vimalraj@email.com',7878234567,'Vimal@12','M','2002-10-11','2021-02-14');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'vlaues (2,'vimal',vimalraj@email.com',7878234567,'Vimal@12','M','2002-10-11','20' at line 1
+mysql> insert into students (id,name,email,moblie_no,password,gender,dob,created_date) values (2,'vimal',vimalraj@email.com',7878234567,'Vimal@12','M','2002-10-11','2021-02-14');
+    '> ^C;
+;
+^C
+mysql> insert into students (id,name,email,mobile_no,password,gender,dob,created_date) values (2,'vimal','vimalraj@email.com','787823567','Vimal@12','M','2002-10-11','2021-02-14');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into students (id,name,email,mobile_no,password,gender,dob,created_date) values (2,'vimal','vimalraj@email.com','787823567','Vimal@12','M','2002-10-11','2021-02-14');
+ERROR 1062 (23000): Duplicate entry '2' for key 'students.PRIMARY'
+mysql> insert into students (id,name,email,mobile_no,password,gender,dob,created_date) values (3,'Hadian','hadienarul@email.com',1233211234,'Hadien@123','M','2002-02-01','2021-02-13');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into students (id,name,email,mobile_no,password,gender,dob,created_date) values (4,'Aswath','Aswath@email.com','5678766785','Aswath@1231','M','2004-02-24','2021-02-12');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select *from students;
++----+--------+------------------------+------------+-------------+--------+------------+---------------------+
+| id | name   | email                  | mobile_no  | password    | gender | dob        | created_date        |
++----+--------+------------------------+------------+-------------+--------+------------+---------------------+
+|  1 | Deepak | deepakthirup@email.com | 8925003062 | Aishu       | M      | 2003-03-13 | 2021-02-12 00:00:00 |
+|  2 | vimal  | vimalraj@email.com     |  787823567 | Vimal@12    | M      | 2002-10-11 | 2021-02-14 00:00:00 |
+|  3 | Hadian | hadienarul@email.com   | 1233211234 | Hadien@123  | M      | 2002-02-01 | 2021-02-13 00:00:00 |
+|  4 | Aswath | Aswath@email.com       | 5678766785 | Aswath@1231 | M      | 2004-02-24 | 2021-02-12 00:00:00 |
++----+--------+------------------------+------------+-------------+--------+------------+---------------------+
+4 rows in set (0.00 sec)
+
+mysql> select name from students;
++--------+
+| name   |
++--------+
+| Deepak |
+| vimal  |
+| Hadian |
+| Aswath |
++--------+
+4 rows in set (0.00 sec)
+
+mysql> update students set password="deepaklike" where id=1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update students set password="likevimal" where id=2;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select *from students;
++----+--------+------------------------+------------+-------------+--------+------------+---------------------+
+| id | name   | email                  | mobile_no  | password    | gender | dob        | created_date        |
++----+--------+------------------------+------------+-------------+--------+------------+---------------------+
+|  1 | Deepak | deepakthirup@email.com | 8925003062 | deepaklike  | M      | 2003-03-13 | 2021-02-12 00:00:00 |
+|  2 | vimal  | vimalraj@email.com     |  787823567 | likevimal   | M      | 2002-10-11 | 2021-02-14 00:00:00 |
+|  3 | Hadian | hadienarul@email.com   | 1233211234 | Hadien@123  | M      | 2002-02-01 | 2021-02-13 00:00:00 |
+|  4 | Aswath | Aswath@email.com       | 5678766785 | Aswath@1231 | M      | 2004-02-24 | 2021-02-12 00:00:00 |
++----+--------+------------------------+------------+-------------+--------+------------+---------------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into class (id,name,email,mobile_no,password,gender,dob,created_date) values(1,'Aishu','Aishiwarya@email.com',9878787667,'M','2004-01-01','2022-01-14');
+ERROR 1146 (42S02): Table 'student_information.class' doesn't exist
+mysql> insert into class (id,name,email,mobile_no,password,gender,dob,created_date) values (1,'Aishu','Aishiwarya@email.com'9878787667,'F','2003-01-01','2022-01-14');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '9878787667,'F','2003-01-01','2022-01-14')' at line 1
+mysql> insert into class (id,name,email,mobile_no,password,gender,dob,created_date) values (1,'Aishu','Aishiwarya@email.com',9878787667,'M','2004-01-01','2022-01-14');
+ERROR 1146 (42S02): Table 'student_information.class' doesn't exist
+mysql> insert into class (id,name,email,mobile_no,password,gender,dob,created_date) values (1,'Aishu','Aishiwarya@email.com','9878787667','F','2004-01-01',2022-01-14);
+ERROR 1146 (42S02): Table 'student_information.class' doesn't exist
+mysql> insert into student_class (id,student_id,class,status) values(1,'1','9','active');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into student_class (id,student_id,class,status) values (2,'2','10','inactive');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student_class (id,student_id,class,status) values (3,'3','9','active');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into student_class (id,student_id,class,status) values (4,'4','10','inactive');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select *from student_class;
++----+------------+-------+----------+
+| id | student_id | class | status   |
++----+------------+-------+----------+
+|  1 |          1 |     9 | active   |
+|  2 |          2 |    10 | inactive |
+|  3 |          3 |     9 | active   |
+|  4 |          4 |    10 | inactive |
++----+------------+-------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select student.name, student_class.class
+    -> from students
+    -> innerjoin student_class
+    -> on students.id=student_class.id
+    -> where student_class.class=10;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'student_class
+on students.id=student_class.id
+where student_class.class=10' at line 3
+mysql> select student.name, student_class.class from students innerjoin student_class on students.id=student_class.id where student_class.class=9;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'student_class on students.id=student_class.id where student_class.class=9' at line 1
+mysql> select student.name, student_class.class from students innerjoin student_class on students.id=student_class.id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'student_class on students.id=student_class.id' at line 1
+mysql> select students.name, student_class.class
+    -> from students
+    -> innerjoin student_class
+    -> on students.id=student_class.id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'student_class
+on students.id=student_class.id' at line 3
+mysql> select students.name, student_class.class
+    ->     -> from students
+    ->     -> innerjoin student_class
+    ->     -> on students.id=student_class.id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from students
+    -> innerjoin student_class
+    -> on students.id=student_class' at line 2
+mysql> select students.name, student_class.class from students inner join student_class on students.id=student_class.id;
++--------+-------+
+| name   | class |
++--------+-------+
+| Deepak |     9 |
+| vimal  |    10 |
+| Hadian |     9 |
+| Aswath |    10 |
++--------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select students.name, student_class.class from students inner join student_class on students.id=student_class.id where student_class.class=9;
++--------+-------+
+| name   | class |
++--------+-------+
+| Deepak |     9 |
+| Hadian |     9 |
++--------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select students.name, student_class.class from students inner join student_class on students.id=student_class.id where student_class.class=10;
++--------+-------+
+| name   | class |
++--------+-------+
+| vimal  |    10 |
+| Aswath |    10 |
++--------+-------+
+2 rows in set (0.00 sec)
+
+mysql> update student_class set class="11" where id=2;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student_class set class="11" where id=4;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select *from student_class;
++----+------------+-------+----------+
+| id | student_id | class | status   |
++----+------------+-------+----------+
+|  1 |          1 |     9 | active   |
+|  2 |          2 |    11 | inactive |
+|  3 |          3 |     9 | active   |
+|  4 |          4 |    11 | inactive |
++----+------------+-------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select *from student_class;
++----+------------+-------+----------+
+| id | student_id | class | status   |
++----+------------+-------+----------+
+|  1 |          1 |     9 | active   |
+|  2 |          2 |    11 | inactive |
+|  3 |          3 |     9 | active   |
+|  4 |          4 |    11 | inactive |
++----+------------+-------+----------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT * FROM students WHERE (email="
+[1]+  Stopped                 sudo -u root mysql
+deepak@administrator-ThinkPad-E14:~$ sudo -u root mysql
+[sudo] password for deepak: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 13
+Server version: 8.0.28-0ubuntu0.20.04.3 (Ubuntu)
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> Show tables;
+ERROR 1046 (3D000): No database selected
+mysql> Show table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> show databases;
++---------------------+
+| Database            |
++---------------------+
+| information_schema  |
+| mysql               |
+| performance_schema  |
+| student_information |
+| sys                 |
++---------------------+
+5 rows in set (0.00 sec)
+
+mysql> use student_information
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> use student_information;
+Database changed
+mysql> show tables;
++-------------------------------+
+| Tables_in_student_information |
++-------------------------------+
+| student_class                 |
+| students                      |
++-------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> select *from where (email="deepakthirup@email.com" and password="deepaklike");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where (email="deepakthirup@email.com" and password="deepaklike")' at line 1
+mysql> SELECT * FROM students WHERE (email="deepakthirup@email.com" and password="deepaklike");
++----+--------+------------------------+------------+------------+--------+------------+---------------------+
+| id | name   | email                  | mobile_no  | password   | gender | dob        | created_date        |
++----+--------+------------------------+------------+------------+--------+------------+---------------------+
+|  1 | Deepak | deepakthirup@email.com | 8925003062 | deepaklike | M      | 2003-03-13 | 2021-02-12 00:00:00 |
++----+--------+------------------------+------------+------------+--------+------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT COUNT(*) FROM student_class WHERE status="ACTIVE";
++----------+
+| COUNT(*) |
++----------+
+|        2 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> DELETE FROM student_class where id=4;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT*FROM student_class;
++----+------------+-------+----------+
+| id | student_id | class | status   |
++----+------------+-------+----------+
+|  1 |          1 |     9 | active   |
+|  2 |          2 |    11 | inactive |
+|  3 |          3 |     9 | active   |
++----+------------+-------+----------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT*FROM students WHERE dob=NULL;
+Empty set (0.00 sec)
+
+mysql> SELECT COUNT(*)FROM student_class WHERE status = "ACTIVE" GROUP BY class;
++----------+
+| COUNT(*) |
++----------+
+|        2 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT COUNT(*),class FROM student_class WHERE status = "ACTIVE" GROUP BY class having count(*)<5;
++----------+-------+
+| COUNT(*) | class |
++----------+-------+
+|        2 |     9 |
++----------+-------+
+1 row in set (0.00 sec)
+
+mysql> SELECT COUNT(*)FROM student_class WHERE status = "ACTIVE" GROUP BY class;
++----------+
+| COUNT(*) |
++----------+
+|        2 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM students INNER JOIN student_class on students.id = student_class.id;
++----+--------+------------------------+------------+------------+--------+------------+---------------------+----+------------+-------+----------+
+| id | name   | email                  | mobile_no  | password   | gender | dob        | created_date        | id | student_id | class | status   |
++----+--------+------------------------+------------+------------+--------+------------+---------------------+----+------------+-------+----------+
+|  1 | Deepak | deepakthirup@email.com | 8925003062 | deepaklike | M      | 2003-03-13 | 2021-02-12 00:00:00 |  1 |          1 |     9 | active   |
+|  2 | vimal  | vimalraj@email.com     |  787823567 | likevimal  | M      | 2002-10-11 | 2021-02-14 00:00:00 |  2 |          2 |    11 | inactive |
+|  3 | Hadian | hadienarul@email.com   | 1233211234 | Hadien@123 | M      | 2002-02-01 | 2021-02-13 00:00:00 |  3 |          3 |     9 | active   |
++----+--------+------------------------+------------+------------+--------+------------+---------------------+----+------------+-------+----------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM students INNER JOIN student_class on students.id = student_class.id WHERE student_class.class=6;
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM students INNER JOIN student_class on students.id = student_class.id WHERE student_class.class=4;
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM students INNER JOIN student_class on students.id = student_class.id WHERE student_class.class=2;
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM students INNER JOIN student_class on students.id = student_class.id WHERE student_class.class=3;
+Empty set (0.00 sec)
+
+mysql> SELECT name,class FROM students LEFT JOIN student_class ON students.id = student_class.student_id;
++--------+-------+
+| name   | class |
++--------+-------+
+| Deepak |     9 |
+| vimal  |    11 |
+| Hadian |     9 |
+| Aswath |  NULL |
++--------+-------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT * FROM students WHERE id NOT IN (SELECT student_id FROM student_class); 
++----+--------+------------------+------------+-------------+--------+------------+---------------------+
+| id | name   | email            | mobile_no  | password    | gender | dob        | created_date        |
++----+--------+------------------+------------+-------------+--------+------------+---------------------+
+|  4 | Aswath | Aswath@email.com | 5678766785 | Aswath@1231 | M      | 2004-02-24 | 2021-02-12 00:00:00 |
++----+--------+------------------+------------+-------------+--------+------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT student_id,name,email,class FROM student_class INNER JOIN students on students.id= student_class.id WHERE students.email = "deepakthirup@email.com";
++------------+--------+------------------------+-------+
+| student_id | name   | email                  | class |
++------------+--------+------------------------+-------+
+|          1 | Deepak | deepakthirup@email.com |     9 |
++------------+--------+------------------------+-------+
+1 row in set (0.00 sec)
+
+mysql> 
+
+
