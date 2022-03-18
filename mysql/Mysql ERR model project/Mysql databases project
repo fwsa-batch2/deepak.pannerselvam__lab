@@ -1,15 +1,112 @@
-+--------------------+
-| Tables_in_SHOWROOM |
-+--------------------+
-| CUSTOMER           |
-| DEALER             |
-| IMAGE              |
-| SALES              |
-| SHOWROOM           |
-| TAX                |
-| USERS              |
-| VEHICLE            |
-+--------------------+
+deepak@administrator-ThinkPad-E14:~$ sudo -u root mysql
+[sudo] password for deepak: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 21
+Server version: 8.0.28-0ubuntu0.20.04.3 (Ubuntu)
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW DATABASES;
++---------------------+
+| Database            |
++---------------------+
+| Academy             |
+| BMW                 |
+| BMW_SHOWROOM        |
+| academy             |
+| information_schema  |
+| mysql               |
+| performance_schema  |
+| student_information |
+| sys                 |
++---------------------+
+9 rows in set (0.00 sec)
+
+mysql> CREATE DATABASE SHOWROOM;
+Query OK, 1 row affected (0.04 sec)
+
+mysql> SHOW DATABASES;
++---------------------+
+| Database            |
++---------------------+
+| Academy             |
+| BMW                 |
+| BMW_SHOWROOM        |
+| SHOWROOM            |
+| academy             |
+| information_schema  |
+| mysql               |
+| performance_schema  |
+| student_information |
+| sys                 |
++---------------------+
+10 rows in set (0.00 sec)
+
+mysql> USE SHOWROOM;
+Database changed
+mysql> CREATE TABLE USERS(USER_ID INT(10) PRIMARY KEY,NAME VARCHAR(25),PASSWORD VARCHAR(25),CONFIRM_PASSWORD VARCHAR(25),NUMBER BIGINT(10));
+Query OK, 0 rows affected, 2 warnings (0.05 sec)
+
+mysql> DESC USERS;
++------------------+-------------+------+-----+---------+-------+
+| Field            | Type        | Null | Key | Default | Extra |
++------------------+-------------+------+-----+---------+-------+
+| USER_ID          | int         | NO   | PRI | NULL    |       |
+| NAME             | varchar(25) | YES  |     | NULL    |       |
+| PASSWORD         | varchar(25) | YES  |     | NULL    |       |
+| CONFIRM_PASSWORD | varchar(25) | YES  |     | NULL    |       |
+| NUMBER           | bigint      | YES  |     | NULL    |       |
++------------------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> INSERT INTO USERS VALUES(0001,'DEEPAK_PANNER','DEEPAK@123','DEEPAK@123',8925003062);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> SHOW *FROM TABLE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*FROM TABLE' at line 1
+mysql> SHOW *FROM USERS;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*FROM USERS' at line 1
+mysql> SELECT *FROM USERS;
++---------+---------------+------------+------------------+------------+
+| USER_ID | NAME          | PASSWORD   | CONFIRM_PASSWORD | NUMBER     |
++---------+---------------+------------+------------------+------------+
+|       1 | DEEPAK_PANNER | DEEPAK@123 | DEEPAK@123       | 8925003062 |
++---------+---------------+------------+------------------+------------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO USERS VALUES(0002,'SATHISH','SATHISH@123','SATHISH@123',8925003061);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO USERS VALUES(0003,'SARAVAN','SARAVAN@123','SARAVAN@123',8925003063);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO USERS VALUES(0004,'KICTHICK','KARTHICK@123','KARTHICK@123',8925003064);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO USERS VALUES(0005,'NAVIN','NAVIN@123','NAVIN@123',8925003065);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM USERS;
++---------+---------------+--------------+------------------+------------+
+| USER_ID | NAME          | PASSWORD     | CONFIRM_PASSWORD | NUMBER     |
++---------+---------------+--------------+------------------+------------+
+|       1 | DEEPAK_PANNER | DEEPAK@123   | DEEPAK@123       | 8925003062 |
+|       2 | SATHISH       | SATHISH@123  | SATHISH@123      | 8925003061 |
+|       3 | SARAVAN       | SARAVAN@123  | SARAVAN@123      | 8925003063 |
+|       4 | KICTHICK      | KARTHICK@123 | KARTHICK@123     | 8925003064 |
+|       5 | NAVIN         | NAVIN@123    | NAVIN@123        | 8925003065 |
++---------+---------------+--------------+------------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> CREATE TABLE CUSTOMER(FRIST_NAME VARCHAR(25),LAST_NAME VARCHAR(25),CUSTOMER_ID INT(10) PRIMARY KEY,EMAIL_ID VARCHAR(25),PASSWORD VARCHAR(25));
+Query OK, 0 rows affected, 1 warning (0.06 sec)
+
 mysql> DESC CUSTOMER;
 +-------------+-------------+------+-----+---------+-------+
 | Field       | Type        | Null | Key | Default | Extra |
@@ -20,6 +117,54 @@ mysql> DESC CUSTOMER;
 | EMAIL_ID    | varchar(25) | YES  |     | NULL    |       |
 | PASSWORD    | varchar(25) | YES  |     | NULL    |       |
 +-------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT INTO CUSTOMER VALUES('DEEPAK','PANNER',0001,'DEEPAKTHIRUP@GMAIL','DEEPAK@123');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO CUSTOMER VALUES('SATHISH','KUMER',0002,'HIGHTSATHISH@GMAIL','SATHISH@123');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO CUSTOMER VALUES('SARAVAN','KUMER',0003,'SARAVAN@GMAIL','SARAVAN@123');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO CUSTOMER VALUES('KARTHICK','KUMER',0004,'KARTHICK@GMAIL','KARTHICK@123');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO CUSTOMER VALUES('NAVIN','KUMER',0005,'NAVIN@GMAIL','NAVIN@123');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT *FROM CUSTOMER;
++------------+-----------+-------------+--------------------+--------------+
+| FRIST_NAME | LAST_NAME | CUSTOMER_ID | EMAIL_ID           | PASSWORD     |
++------------+-----------+-------------+--------------------+--------------+
+| DEEPAK     | PANNER    |           1 | DEEPAKTHIRUP@GMAIL | DEEPAK@123   |
+| SATHISH    | KUMER     |           2 | HIGHTSATHISH@GMAIL | SATHISH@123  |
+| SARAVAN    | KUMER     |           3 | SARAVAN@GMAIL      | SARAVAN@123  |
+| KARTHICK   | KUMER     |           4 | KARTHICK@GMAIL     | KARTHICK@123 |
+| NAVIN      | KUMER     |           5 | NAVIN@GMAIL        | NAVIN@123    |
++------------+-----------+-------------+--------------------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> CREATE TABLE DEALER(DEALER_ID INT(10) PRIMARY KEY,ADIMIN_ID INT(10),FOREIGN KEY
+    -> (ADMIN;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql> CREATE TABLE DEALER(DEALER_ID INT(10) PRIMARY KEY,USER_ID INT(10),FOREIGN KEY (USER_ID) REFERENCES USERS(USER_ID));
+Query OK, 0 rows affected, 2 warnings (0.04 sec)
+
+mysql> ALTER DEALER ADD FRIST_NAME VARCHAR(25),LAST_NAME VARCHAR(25),PASSWORD VARCHAR(25),NUMBER BIGINT(10),ADDRESS TEXT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DEALER ADD FRIST_NAME VARCHAR(25),LAST_NAME VARCHAR(25),PASSWORD VARCHAR(25),NUM' at line 1
+mysql> ALTER TABLE DEALER ADD FRIST_NAME VARCHAR(25),LAST_NAME VARCHAR(25),PASSWORD VARCHAR(25),NUMBER BIGINT(10),ADDRESS TEXT
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LAST_NAME VARCHAR(25),PASSWORD VARCHAR(25),NUMBER BIGINT(10),ADDRESS TEXT' at line 1
+mysql> ALTER DEALER ADD(FRIST_NAME VARCHAR(25),LAST_NAME VARCHAR(25),PASSWORD VARCHAR(25),NUMBER BIGINT(10),ADDRESS TEXT));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DEALER ADD(FRIST_NAME VARCHAR(25),LAST_NAME VARCHAR(25),PASSWORD VARCHAR(25),NUM' at line 1
+mysql> DROP TABLE DEALER;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> CREATE TABLE DEALER(DEALER_ID INT(10) PRIMARY KEY,USER_ID INT(10),FOREIGN KEY (USER_ID) REFERENCES USERS(USER_ID),FIRST_NAME VARCHAR(25),LAST_NAME VARCHAR(25),PASSWORD VARCHAR(25),NUMBER BIGINT(10),ADDRESS TEXT);
+Query OK, 0 rows affected, 3 warnings (0.03 sec)
+
 mysql> DESC DEALER;
 +------------+-------------+------+-----+---------+-------+
 | Field      | Type        | Null | Key | Default | Extra |
@@ -32,6 +177,79 @@ mysql> DESC DEALER;
 | NUMBER     | bigint      | YES  |     | NULL    |       |
 | ADDRESS    | text        | YES  |     | NULL    |       |
 +------------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> INSERT INTO DEALER VALUES(0011,0001,'DEEPAK','PANNER','DEEPAK@123',8925003062,'CHENNAI');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO DEALER VALUES(0012,0002,'SATHISH','KUMER','SATHISH@123',8925003061,'CHENNAI');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO DEALER VALUES(0013,0003,'SARAVAN','KUMER','SARAVAN@123',8925003063,'CHENNAI');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO DEALER VALUES(0014,0004,'KARTHICK','KUMER','KARTHICK@123',8925003064,'CHENNAI');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO DEALER VALUES(0015,0005,'NAVIN','KUMER','NAVIN@123',8925003065,'CHENNAI');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> SELECT *FROM DEALER;
++-----------+---------+------------+-----------+--------------+------------+---------+
+| DEALER_ID | USER_ID | FIRST_NAME | LAST_NAME | PASSWORD     | NUMBER     | ADDRESS |
++-----------+---------+------------+-----------+--------------+------------+---------+
+|        11 |       1 | DEEPAK     | PANNER    | DEEPAK@123   | 8925003062 | CHENNAI |
+|        12 |       2 | SATHISH    | KUMER     | SATHISH@123  | 8925003061 | CHENNAI |
+|        13 |       3 | SARAVAN    | KUMER     | SARAVAN@123  | 8925003063 | CHENNAI |
+|        14 |       4 | KARTHICK   | KUMER     | KARTHICK@123 | 8925003064 | CHENNAI |
+|        15 |       5 | NAVIN      | KUMER     | NAVIN@123    | 8925003065 | CHENNAI |
++-----------+---------+------------+-----------+--------------+------------+---------+
+5 rows in set (0.01 sec)
+
+mysql> CREATE TABLE VEHICLE(VEH_NAME VARCHAR (25),VEH_MODEL VARCHAR(25),VEH_COST INT(50),VEH_ID INT(10) PRIMARY KEY,DEALER_ID INT(10),FOREIGN KEY(DEALER_ID) REFERENCES DEALER(DEALER_ID));
+Query OK, 0 rows affected, 3 warnings (0.06 sec)
+
+mysql> DESC VEHICLE;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| VEH_NAME  | varchar(25) | YES  |     | NULL    |       |
+| VEH_MODEL | varchar(25) | YES  |     | NULL    |       |
+| VEH_COST  | int         | YES  |     | NULL    |       |
+| VEH_ID    | int         | NO   | PRI | NULL    |       |
+| DEALER_ID | int         | YES  | MUL | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT INTO VEHICLE VALUES('BMW','SERIES01',2000000,0021,11);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO VEHICLE VALUES('BMW','SERIES02',3000000,0022,12);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO VEHICLE VALUES('BMW','SERIES03',4000000,0023,13);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO VEHICLE VALUES('BMW','SERIES04',5000000,0024,14);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO VEHICLE VALUES('BMW','SERIES05',6000000,0025,15);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> SELECT *FROM VEHICLE;
++----------+-----------+----------+--------+-----------+
+| VEH_NAME | VEH_MODEL | VEH_COST | VEH_ID | DEALER_ID |
++----------+-----------+----------+--------+-----------+
+| BMW      | SERIES01  |  2000000 |     21 |        11 |
+| BMW      | SERIES02  |  3000000 |     22 |        12 |
+| BMW      | SERIES03  |  4000000 |     23 |        13 |
+| BMW      | SERIES04  |  5000000 |     24 |        14 |
+| BMW      | SERIES05  |  6000000 |     25 |        15 |
++----------+-----------+----------+--------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> CREATE TABLE IMAGE(IMG_ID INT(10),VEH_ID INT(10),FOREIGN KEY(VEH_ID) REFERENCES VEHICLE(VEH_ID),IMG_NAME VARCHAR(25),DEF_IMG INT);
+Query OK, 0 rows affected, 2 warnings (0.06 sec)
 
 mysql> DESC IMAGE;
 +----------+-------------+------+-----+---------+-------+
@@ -42,6 +260,158 @@ mysql> DESC IMAGE;
 | IMG_NAME | varchar(25) | YES  |     | NULL    |       |
 | DEF_IMG  | int         | YES  |     | NULL    |       |
 +----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> INSERT INTO IMAGE(01,21,'BMW_RED',31);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '01,21,'BMW_RED',31)' at line 1
+mysql> INSERT INTO IMAGE VALUES(01,21,'BMW_RED',31);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO IMAGE VALUES(02,22,'BMW_YELLOW',32);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO IMAGE VALUES(03,23,'BMW_BLUE',33);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO IMAGE VALUES(04,24,'BMW_BLACK',34);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO IMAGE VALUES(05,25,'BMW_WHITE',35);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> SELECT *FROM IMAGE;
++--------+--------+------------+---------+
+| IMG_ID | VEH_ID | IMG_NAME   | DEF_IMG |
++--------+--------+------------+---------+
+|      1 |     21 | BMW_RED    |      31 |
+|      2 |     22 | BMW_YELLOW |      32 |
+|      3 |     23 | BMW_BLUE   |      33 |
+|      4 |     24 | BMW_BLACK  |      34 |
+|      5 |     25 | BMW_WHITE  |      35 |
++--------+--------+------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> CREATE TABLE SHOWROOM(SHOW_ID INT(10) PRIMARY KEY,DEALER_ID INT(10),FOREIGN KEY(DEALER_ID) REFERENCES DEALER(DEALER_ID),CONACT BIGINT(10),ADDRESS TEXT,PINCODE INT(10);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> CREATE TABLE SHOWROOM(SHOW_ID INT(10) PRIMARY KEY,DEALER_ID INT(10),FOREIGN KEY(DEALER_ID) REFERENCES DEALER(DEALER_ID),CONACT BIGINT(10),ADDRESS TEXT,PINCODE INT(10));
+Query OK, 0 rows affected, 4 warnings (0.03 sec)
+
+mysql> DESC SHOWROOM;
++-----------+--------+------+-----+---------+-------+
+| Field     | Type   | Null | Key | Default | Extra |
++-----------+--------+------+-----+---------+-------+
+| SHOW_ID   | int    | NO   | PRI | NULL    |       |
+| DEALER_ID | int    | YES  | MUL | NULL    |       |
+| CONACT    | bigint | YES  |     | NULL    |       |
+| ADDRESS   | text   | YES  |     | NULL    |       |
+| PINCODE   | int    | YES  |     | NULL    |       |
++-----------+--------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> INSERT INTO SHOWROOM VALUES(01,11,8925003062,'CHENNAI',600115);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO SHOWROOM VALUES(02,12,8925003061,'CHENNAI',600115);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO SHOWROOM VALUES(03,13,8925003063,'CHENNAI',600115);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO SHOWROOM VALUES(04,14,8925003064,'CHENNAI',600115);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO SHOWROOM VALUES(05,15,8925003065,'CHENNAI',600115);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT *FROM SHOWROOM;
++---------+-----------+------------+---------+---------+
+| SHOW_ID | DEALER_ID | CONACT     | ADDRESS | PINCODE |
++---------+-----------+------------+---------+---------+
+|       1 |        11 | 8925003062 | CHENNAI |  600115 |
+|       2 |        12 | 8925003061 | CHENNAI |  600115 |
+|       3 |        13 | 8925003063 | CHENNAI |  600115 |
+|       4 |        14 | 8925003064 | CHENNAI |  600115 |
+|       5 |        15 | 8925003065 | CHENNAI |  600115 |
++---------+-----------+------------+---------+---------+
+5 rows in set (0.00 sec)
+
+mysql> CREATE TABLE TAX(TAX_ID INT(10) PRIMARY KEY,TAX INT(10),STATUS VARCHAR(15));
+Query OK, 0 rows affected, 2 warnings (0.05 sec)
+
+mysql> DESC TAX;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| TAX_ID | int         | NO   | PRI | NULL    |       |
+| TAX    | int         | YES  |     | NULL    |       |
+| STATUS | varchar(15) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO TAX VALUES(1001,18.00,'HEIGHT');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO TAX VALUES(1002,16.00,'HEIGHT');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO TAX VALUES(1003,8.00,'LOW');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO TAX VALUES(1004,6.00,'LOW');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO TAX VALUES(100,6.00,'HIGHT');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> DROP TABLE TAX;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> CREATE TABLE TAX(TAX_ID INT(10) PRIMARY KEY,TAX INT(10),STATUS VARCHAR(15));
+Query OK, 0 rows affected, 2 warnings (0.06 sec)
+
+mysql> DESC TAX;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| TAX_ID | int         | NO   | PRI | NULL    |       |
+| TAX    | int         | YES  |     | NULL    |       |
+| STATUS | varchar(15) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO TAX VALUES(1001,18.00,'HIGHT');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO TAX VALUES(1002,16.00,'HEIGHT');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO TAX VALUES(1003,8.00,'LOW');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO TAX VALUES(1004,6.00,'LOW');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO TAX VALUES(1005,17.00,'HIGHT');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> SELECT *FROM TAX;
++--------+------+--------+
+| TAX_ID | TAX  | STATUS |
++--------+------+--------+
+|   1001 |   18 | HIGHT  |
+|   1002 |   16 | HEIGHT |
+|   1003 |    8 | LOW    |
+|   1004 |    6 | LOW    |
+|   1005 |   17 | HIGHT  |
++--------+------+--------+
+5 rows in set (0.00 sec)
+
+mysql> CREATE TABLE SALES(SALES_ID INT(10) PRIMARY KEY,VEH_ID INT(10),FOREIGN KEY(VEH_ID) REFERENCES VEHICLE(VEH_ID),CUSTOMER_ID INT(10),FOREIGN KEY(CUSTOMER) REFERENCES CUSTOMER(CUSTOMER_ID),SHOW_ID INT(10),FOREIGN KEY(SHOW_ID) REFERENCES SHOWROOM
+    -> (SHOW_ID),TAX_ID INT(10),FOREIGN KEY(TAX_ID) REFERENCES TAX(TAX_ID),ORD_DATE DATE,DEL_DATE DATE);
+ERROR 1072 (42000): Key column 'CUSTOMER' doesn't exist in table
+mysql> CREATE TABLE SALES(SALES_ID INT(10) PRIMARY KEY,VEH_ID INT(10),FOREIGN KEY(VEH_ID) REFERENCES VEHICLE(VEH_ID),CUSTOMER_ID INT(10),FOREIGN KEY(CUSTOMER_ID) REFERENCES CUSTOMER(CUSTOMER_ID),SHOW_ID INT(10),FOREIGN KEY(SHOW_ID) REFERENCES SHOWROOM (SHOW_ID),TAX_ID INT(10),FOREIGN KEY(TAX_ID) REFERENCES TAX(TAX_ID),ORD_DATE DATE,DEL_DATE DATE);
+Query OK, 0 rows affected, 5 warnings (0.07 sec)
+
 mysql> DESC SALES;
 +-------------+------+------+-----+---------+-------+
 | Field       | Type | Null | Key | Default | Extra |
@@ -54,42 +424,38 @@ mysql> DESC SALES;
 | ORD_DATE    | date | YES  |     | NULL    |       |
 | DEL_DATE    | date | YES  |     | NULL    |       |
 +-------------+------+------+-----+---------+-------+
-mysql> DESC SHOWROOM;
-+-----------+--------+------+-----+---------+-------+
-| Field     | Type   | Null | Key | Default | Extra |
-+-----------+--------+------+-----+---------+-------+
-| SHOW_ID   | int    | NO   | PRI | NULL    |       |
-| DEALER_ID | int    | YES  | MUL | NULL    |       |
-| CONACT    | bigint | YES  |     | NULL    |       |
-| ADDRESS   | text   | YES  |     | NULL    |       |
-| PINCODE   | int    | YES  |     | NULL    |       |
-+-----------+--------+------+-----+---------+-------+
-mysql> DESC TAX;
-+--------+-------------+------+-----+---------+-------+
-| Field  | Type        | Null | Key | Default | Extra |
-+--------+-------------+------+-----+---------+-------+
-| TAX_ID | int         | NO   | PRI | NULL    |       |
-| TAX    | int         | YES  |     | NULL    |       |
-| STATUS | varchar(15) | YES  |     | NULL    |       |
-+--------+-------------+------+-----+---------+-------+
-mysql> DESC USERS;
-+------------------+-------------+------+-----+---------+-------+
-| Field            | Type        | Null | Key | Default | Extra |
-+------------------+-------------+------+-----+---------+-------+
-| USER_ID          | int         | NO   | PRI | NULL    |       |
-| NAME             | varchar(25) | YES  |     | NULL    |       |
-| PASSWORD         | varchar(25) | YES  |     | NULL    |       |
-| CONFIRM_PASSWORD | varchar(25) | YES  |     | NULL    |       |
-| NUMBER           | bigint      | YES  |     | NULL    |       |
-+------------------+-------------+------+-----+---------+-------+
-mysql> DESC VEHICLE;
-+-----------+-------------+------+-----+---------+-------+
-| Field     | Type        | Null | Key | Default | Extra |
-+-----------+-------------+------+-----+---------+-------+
-| VEH_NAME  | varchar(25) | YES  |     | NULL    |       |
-| VEH_MODEL | varchar(25) | YES  |     | NULL    |       |
-| VEH_COST  | int         | YES  |     | NULL    |       |
-| VEH_ID    | int         | NO   | PRI | NULL    |       |
-| DEALER_ID | int         | YES  | MUL | NULL    |       |
-+-----------+-------------+------+-----+---------+-------+
+7 rows in set (0.01 sec)
+
+mysql> INSERT INTO SALES VALUES(1,21,1,1,1001,'12-03-2021','12-04-2021');
+ERROR 1292 (22007): Incorrect date value: '12-03-2021' for column 'ORD_DATE' at row 1
+mysql> INSERT INTO SALES VALUES(1,21,1,1,1001,12-03-2021,12-04-2021);
+ERROR 1292 (22007): Incorrect date value: '-2012' for column 'ORD_DATE' at row 1
+mysql> INSERT INTO SALES VALUES(1,21,1,1,1001,'2021-03-12','2021-04-12');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO SALES VALUES(2,22,2,2,1002,'2021-03-15','2021-04-15');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO SALES VALUES(3,23,3,3,1003,'2021-03-22','2021-04-22');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO SALES VALUES(3424,4,4,1004,'2021-03-27','2021-04-27');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> INSERT INTO SALES VALUES(4,24,4,4,1004,'2021-03-27','2021-04-27');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO SALES VALUES(5,25,5,5,1005,'2021-03-30','2021-04-30');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> SELECT *FROM SALES;
++----------+--------+-------------+---------+--------+------------+------------+
+| SALES_ID | VEH_ID | CUSTOMER_ID | SHOW_ID | TAX_ID | ORD_DATE   | DEL_DATE   |
++----------+--------+-------------+---------+--------+------------+------------+
+|        1 |     21 |           1 |       1 |   1001 | 2021-03-12 | 2021-04-12 |
+|        2 |     22 |           2 |       2 |   1002 | 2021-03-15 | 2021-04-15 |
+|        3 |     23 |           3 |       3 |   1003 | 2021-03-22 | 2021-04-22 |
+|        4 |     24 |           4 |       4 |   1004 | 2021-03-27 | 2021-04-27 |
+|        5 |     25 |           5 |       5 |   1005 | 2021-03-30 | 2021-04-30 |
++----------+--------+-------------+---------+--------+------------+------------+
+5 rows in set (0.00 sec)
 
