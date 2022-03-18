@@ -1,0 +1,95 @@
++--------------------+
+| Tables_in_SHOWROOM |
++--------------------+
+| CUSTOMER           |
+| DEALER             |
+| IMAGE              |
+| SALES              |
+| SHOWROOM           |
+| TAX                |
+| USERS              |
+| VEHICLE            |
++--------------------+
+mysql> DESC CUSTOMER;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| FRIST_NAME  | varchar(25) | YES  |     | NULL    |       |
+| LAST_NAME   | varchar(25) | YES  |     | NULL    |       |
+| CUSTOMER_ID | int         | NO   | PRI | NULL    |       |
+| EMAIL_ID    | varchar(25) | YES  |     | NULL    |       |
+| PASSWORD    | varchar(25) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+mysql> DESC DEALER;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| DEALER_ID  | int         | NO   | PRI | NULL    |       |
+| USER_ID    | int         | YES  | MUL | NULL    |       |
+| FIRST_NAME | varchar(25) | YES  |     | NULL    |       |
+| LAST_NAME  | varchar(25) | YES  |     | NULL    |       |
+| PASSWORD   | varchar(25) | YES  |     | NULL    |       |
+| NUMBER     | bigint      | YES  |     | NULL    |       |
+| ADDRESS    | text        | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+
+mysql> DESC IMAGE;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| IMG_ID   | int         | YES  |     | NULL    |       |
+| VEH_ID   | int         | YES  | MUL | NULL    |       |
+| IMG_NAME | varchar(25) | YES  |     | NULL    |       |
+| DEF_IMG  | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+mysql> DESC SALES;
++-------------+------+------+-----+---------+-------+
+| Field       | Type | Null | Key | Default | Extra |
++-------------+------+------+-----+---------+-------+
+| SALES_ID    | int  | NO   | PRI | NULL    |       |
+| VEH_ID      | int  | YES  | MUL | NULL    |       |
+| CUSTOMER_ID | int  | YES  | MUL | NULL    |       |
+| SHOW_ID     | int  | YES  | MUL | NULL    |       |
+| TAX_ID      | int  | YES  | MUL | NULL    |       |
+| ORD_DATE    | date | YES  |     | NULL    |       |
+| DEL_DATE    | date | YES  |     | NULL    |       |
++-------------+------+------+-----+---------+-------+
+mysql> DESC SHOWROOM;
++-----------+--------+------+-----+---------+-------+
+| Field     | Type   | Null | Key | Default | Extra |
++-----------+--------+------+-----+---------+-------+
+| SHOW_ID   | int    | NO   | PRI | NULL    |       |
+| DEALER_ID | int    | YES  | MUL | NULL    |       |
+| CONACT    | bigint | YES  |     | NULL    |       |
+| ADDRESS   | text   | YES  |     | NULL    |       |
+| PINCODE   | int    | YES  |     | NULL    |       |
++-----------+--------+------+-----+---------+-------+
+mysql> DESC TAX;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| TAX_ID | int         | NO   | PRI | NULL    |       |
+| TAX    | int         | YES  |     | NULL    |       |
+| STATUS | varchar(15) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+mysql> DESC USERS;
++------------------+-------------+------+-----+---------+-------+
+| Field            | Type        | Null | Key | Default | Extra |
++------------------+-------------+------+-----+---------+-------+
+| USER_ID          | int         | NO   | PRI | NULL    |       |
+| NAME             | varchar(25) | YES  |     | NULL    |       |
+| PASSWORD         | varchar(25) | YES  |     | NULL    |       |
+| CONFIRM_PASSWORD | varchar(25) | YES  |     | NULL    |       |
+| NUMBER           | bigint      | YES  |     | NULL    |       |
++------------------+-------------+------+-----+---------+-------+
+mysql> DESC VEHICLE;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| VEH_NAME  | varchar(25) | YES  |     | NULL    |       |
+| VEH_MODEL | varchar(25) | YES  |     | NULL    |       |
+| VEH_COST  | int         | YES  |     | NULL    |       |
+| VEH_ID    | int         | NO   | PRI | NULL    |       |
+| DEALER_ID | int         | YES  | MUL | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+
