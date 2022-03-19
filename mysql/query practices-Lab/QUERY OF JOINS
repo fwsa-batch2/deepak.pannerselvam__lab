@@ -1,0 +1,197 @@
+mysql> SHOW DATABASES;
++---------------------+
+| Database            |
++---------------------+
+| Academy             |
+| BMW                 |
+| BMW_SHOWROOM        |
+| SHOWROOM            |
+| academy             |
+| information_schema  |
+| mysql               |
+| performance_schema  |
+| student_information |
+| sys                 |
++---------------------+
+10 rows in set (0.01 sec)
+
+mysql> USE adcdemy;
+ERROR 1049 (42000): Unknown database 'adcdemy'
+mysql> USE academy;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> CREATE TABLE CRICKET(NAME VARCHAR(15),AGE INT(2);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> CREATE TABLE CRICKET(NAME VARCHAR(15),AGE INT(2));
+Query OK, 0 rows affected, 1 warning (0.03 sec)
+
+mysql> DESC CRICKET;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| NAME  | varchar(15) | YES  |     | NULL    |       |
+| AGE   | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> INSERT INTO CRICKET VALUES('DEEPAK',19);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO CRICKET VALUES('ASWATH',18);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO CRICKET VALUES('PRASANNA',20);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO CRICKET VALUES('HAIDEN',19);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> SELECT *FROM CRICKET;
++----------+------+
+| NAME     | AGE  |
++----------+------+
+| DEEPAK   |   19 |
+| ASWATH   |   18 |
+| PRASANNA |   20 |
+| HAIDEN   |   19 |
++----------+------+
+4 rows in set (0.00 sec)
+
+mysql> CREATE TABLE FOOTBALL(NAME VARCHAR(15),AGE INT(2);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> CREATE TABLE FOOTBALL(NAME VARCHAR(15),AGE INT(2));
+Query OK, 0 rows affected, 1 warning (0.06 sec)
+
+mysql> DESC FOOTBALL;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| NAME  | varchar(15) | YES  |     | NULL    |       |
+| AGE   | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> INSERT INTO FOOTBALL VALUES('DEEPAK',19);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO FOOTBALL VALUES('SELVAM',18);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO FOOTBALL VALUES('MANI',17);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO FOOTBALL VALUES('HAIDEN',19);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> SELECT *FROM FOOTBALL;
++--------+------+
+| NAME   | AGE  |
++--------+------+
+| DEEPAK |   19 |
+| SELVAM |   18 |
+| MANI   |   17 |
+| HAIDEN |   19 |
++--------+------+
+4 rows in set (0.00 sec)
+
+mysql> SELECCT *FROM CRICKET LEFT JOIN FOOTBALL ON CRICKET.NAME=FOOTBALL.NAME;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECCT *FROM CRICKET LEFT JOIN FOOTBALL ON CRICKET.NAME=FOOTBALL.NAME' at line 1
+mysql> SELECT *FROM CRICKET LEFT JOIN FOOTBALL ON CRICKET.NAME=FOOTBALL.NAME;
++----------+------+--------+------+
+| NAME     | AGE  | NAME   | AGE  |
++----------+------+--------+------+
+| DEEPAK   |   19 | DEEPAK |   19 |
+| ASWATH   |   18 | NULL   | NULL |
+| PRASANNA |   20 | NULL   | NULL |
+| HAIDEN   |   19 | HAIDEN |   19 |
++----------+------+--------+------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT *FROM CRICKET RIGHT JOIN FOOTBALL ON CRICKET.NAME=FOOTBALL.NAME;
++--------+------+--------+------+
+| NAME   | AGE  | NAME   | AGE  |
++--------+------+--------+------+
+| DEEPAK |   19 | DEEPAK |   19 |
+| NULL   | NULL | SELVAM |   18 |
+| NULL   | NULL | MANI   |   17 |
+| HAIDEN |   19 | HAIDEN |   19 |
++--------+------+--------+------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT *FROM CRICKET LEFT JOIN FOOTBALL ON CRICKET.NAME=FOOTBALL.NAME WHERE FOOTBALL.NAME IS NULL;
++----------+------+------+------+
+| NAME     | AGE  | NAME | AGE  |
++----------+------+------+------+
+| ASWATH   |   18 | NULL | NULL |
+| PRASANNA |   20 | NULL | NULL |
++----------+------+------+------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT *FROM CRICKET RIGHT JOIN FOOTBALL ON CRICKET.NAME=FOOTBALL.NAME WHERE CRICKET.NAME IS NULL;
++------+------+--------+------+
+| NAME | AGE  | NAME   | AGE  |
++------+------+--------+------+
+| NULL | NULL | SELVAM |   18 |
+| NULL | NULL | MANI   |   17 |
++------+------+--------+------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT *FROM CRICKET RIGHT JOIN FOOTBALL ON CRICKET.NAME=FOOTBALL.NAME WHERE CRICKET.NAME IS NULL UNION ALL SELECT *FROM LEFT JOIN FOOTBALL ON CRICKET.NAME=FOOTBALL.NAME WHERE FOOTBALL.NAME IS NULL;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LEFT JOIN FOOTBALL ON CRICKET.NAME=FOOTBALL.NAME WHERE FOOTBALL.NAME IS NULL' at line 1
+mysql> SELECT *FROM CRICKET LEFT JOIN FOOTBALL ON CRICKET.NAME=FOOTBALL.NAME WHERE FOOTBALL.NAME IS NULL UNION ALL SELECT *FROM RIGHT JOIN FOOTBALL ON CRICKET.NAME=FOOTBALL.NAME WHERE CRICKET.NAME IS NULL;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RIGHT JOIN FOOTBALL ON CRICKET.NAME=FOOTBALL.NAME WHERE CRICKET.NAME IS NULL' at line 1
+mysql> SELECT *FROM CRICKET LEFT JOIN FOOTBALL ON CRICKET.NAME=FOOTBALL.NAME WHERE FOOTBALL.NAME IS NULL UNION ALL SELECT *FROM RIGHT JOIN FOOTBALL ON CRICKET.NAME=FOOTBALL.NAME WHERE CRICKET.NAME IS NULL;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RIGHT JOIN FOOTBALL ON CRICKET.NAME=FOOTBALL.NAME WHERE CRICKET.NAME IS NULL' at line 1
+mysql>  SELECT *FROM LEFT JOIN FOOTBALL ON CRICKET.NAME=FOOTBALL.NAME WHERE FOOTBALL.NAME IS NULL;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LEFT JOIN FOOTBALL ON CRICKET.NAME=FOOTBALL.NAME WHERE FOOTBALL.NAME IS NULL' at line 1
+mysql> SELECT *FROM RIGHT JOIN FOOTBALL ON CRICKET.NAME=FOOTBALL.NAME WHERE CRICKET.NAME IS NULL;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RIGHT JOIN FOOTBALL ON CRICKET.NAME=FOOTBALL.NAME WHERE CRICKET.NAME IS NULL' at line 1
+mysql> SELECT *FROM CRICKET LEFT JOIN FOOTBALL ON CRICKET.NAME=FOOTBALL.NAME WHERE FOOTBALL.NAME IS NULL;
++----------+------+------+------+
+| NAME     | AGE  | NAME | AGE  |
++----------+------+------+------+
+| ASWATH   |   18 | NULL | NULL |
+| PRASANNA |   20 | NULL | NULL |
++----------+------+------+------+
+2 rows in set (0.01 sec)
+
+mysql> SELECT *FROM CRICKET LEFT JOIN FOOTBALL ON CRICKET.NAME=FOOTBALL.NAME WHERE FOOTBALL.NAME IS NULL UNION SELECT *FROM CRICKET RIGHT JOIN FOOTBALL ON CRICKET.NAME=FOOTBALL.NAME WHERE CRICKET.NAME IS NULL;
++----------+------+--------+------+
+| NAME     | AGE  | NAME   | AGE  |
++----------+------+--------+------+
+| ASWATH   |   18 | NULL   | NULL |
+| PRASANNA |   20 | NULL   | NULL |
+| NULL     | NULL | SELVAM |   18 |
+| NULL     | NULL | MANI   |   17 |
++----------+------+--------+------+
+4 rows in set (0.01 sec)
+
+mysql> +------+------+--------+------+
+    -> SELECT * FROM CRICKET INNER JOIN FOOTBALL ON CRICKET.NAME=FOOTBALL.NAME;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+------+------+--------+------+
+SELECT * FROM CRICKET INNER JOIN FOOTBALL ON CRI' at line 1
+mysql> SELECT * FROM CRICKET INNER JOIN FOOTBALL ON CRICKET.NAME=FOOTBALL.NAME;
++--------+------+--------+------+
+| NAME   | AGE  | NAME   | AGE  |
++--------+------+--------+------+
+| DEEPAK |   19 | DEEPAK |   19 |
+| HAIDEN |   19 | HAIDEN |   19 |
++--------+------+--------+------+
+2 rows in set (0.01 sec)
+
+mysql> SELECT *FROM CRICKET LEFT JOIN FOOTBALL ON CRICKET.NAME=FOOTBALL.NAME WHERE FOOTBALL.NAME IS NULL UNION SELECT *FROM CRICKET RIGHT JOIN FOOTBALL ON CRICKET.NAME=FOOTBALL.NAME WHERE CRICKET.NAME IS NULL UNION ALL SELECT *FROM CRICKET INNER JOIN FOOTBALL ON CRICKET.NAME=FOOTBALL.NAME;
++----------+------+--------+------+
+| NAME     | AGE  | NAME   | AGE  |
++----------+------+--------+------+
+| ASWATH   |   18 | NULL   | NULL |
+| PRASANNA |   20 | NULL   | NULL |
+| NULL     | NULL | SELVAM |   18 |
+| NULL     | NULL | MANI   |   17 |
+| DEEPAK   |   19 | DEEPAK |   19 |
+| HAIDEN   |   19 | HAIDEN |   19 |
++----------+------+--------+------+
+6 rows in set (0.01 sec)
+
+mysql>
