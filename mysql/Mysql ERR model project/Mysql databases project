@@ -458,4 +458,49 @@ mysql> SELECT *FROM SALES;
 |        5 |     25 |           5 |       5 |   1005 | 2021-03-30 | 2021-04-30 |
 +----------+--------+-------------+---------+--------+------------+------------+
 5 rows in set (0.00 sec)
+mysql> CREATE TABLE REVIEW(CUSTOMER_ID INT PRIMARY KEY,FOREIGN KEY(CUSTOMER_ID) REFERENCES CUSTOMER(CUSTOMER_ID),RATING FLOAT CHECK(RATING<=5 AND RATING >=0),FEEDBACK VARCHAR(100));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> DESC REVIEW;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| CUSTOMER_ID | int          | NO   | PRI | NULL    |       |
+| RATING      | float        | YES  |     | NULL    |       |
+| FEEDBACK    | varchar(100) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO REVIEW VALUES(1,4.03,REAL I FLAT GOOD WEB SITE FOR CAR);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'REAL I FLAT GOOD WEB SITE FOR CAR)' at line 1
+mysql> INSERT INTO REVIEW VALUES(1,4.03,'REAL I FLAT GOOD WEB SITE FOR CAR');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> SELECT * FROM REVIEW;
++-------------+--------+-----------------------------------+
+| CUSTOMER_ID | RATING | FEEDBACK                          |
++-------------+--------+-----------------------------------+
+|           1 |   4.03 | REAL I FLAT GOOD WEB SITE FOR CAR |
++-------------+--------+-----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO REVIEW VALUES(2,4.00,'GOOD');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO REVIEW VALUES(3,3.00,'I LIKE A PAGE');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO REVIEW VALUES(4,5.00,'I LOVE THIS');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT *FROM REVIEW;
++-------------+--------+-----------------------------------+
+| CUSTOMER_ID | RATING | FEEDBACK                          |
++-------------+--------+-----------------------------------+
+|           1 |   4.03 | REAL I FLAT GOOD WEB SITE FOR CAR |
+|           2 |      4 | GOOD                              |
+|           3 |      3 | I LIKE A PAGE                     |
+|           4 |      5 | I LOVE THIS                       |
++-------------+--------+-----------------------------------+
+4 rows in set (0.00 sec)
 
