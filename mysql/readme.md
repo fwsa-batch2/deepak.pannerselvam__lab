@@ -34,7 +34,7 @@ SELECT * FROM USERS;
 ```
 
 | USER_ID | NAME          | PASSWORD     | CONFIRM_PASSWORD | NUMBER     |
-|:--:|:--:|:--:|:--:|:--:|
+|---------|---------------|--------------|------------------|------------|
 |       1 | DEEPAK_PANNER | DEEPAK@123   | DEEPAK@123       | 8925003062 |
 |       2 | SATHISH       | SATHISH@123  | SATHISH@123      | 8925003061 |
 |       3 | SARAVAN       | SARAVAN@123  | SARAVAN@123      | 8925003063 |
