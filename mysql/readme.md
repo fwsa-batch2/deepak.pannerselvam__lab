@@ -39,9 +39,9 @@ SELECT * FROM USERS;
 |       2 | SATHISH       | SATHISH@123  | SATHISH@123      | 8925003061 |
 |       3 | SARAVAN       | SARAVAN@123  | SARAVAN@123      | 8925003063 |
 |       4 | KICTHICK      | KARTHICK@123 | KARTHICK@123     | 8925003064 |
-|       5 | NAVIN         | NAVIN@123    | NAVIN@123        | 8925003065 
-|
-Creation of table 2 - 'user_contacts'
+|       5 | NAVIN         | NAVIN@123    | NAVIN@123        | 8925003065 |
+
+Creation of table 2 - 'customer'
 ```
 CREATE TABLE CUSTOMER(FRIST_NAME VARCHAR(25),LAST_NAME VARCHAR(25),CUSTOMER_ID INT(10) PRIMARY KEY,EMAIL_ID VARCHAR(25),PASSWORD VARCHAR(25));
 ```
