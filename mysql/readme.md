@@ -23,8 +23,21 @@ INSERTION OF RECORDS INTO 'USER' TABLE
 ```
 INSERT INTO USERS VALUES(0001,'DEEPAK_PANNER','DEEPAK@123','DEEPAK@123',8925003062);
 ```
+```
 INSERT INTO USERS VALUES(0003,'SARAVAN','SARAVAN@123','SARAVAN@123',8925003063);
+```
 ```
 INSERT INTO USERS VALUES(0004,'KICTHICK','KARTHICK@123','KARTHICK@123',8925003064);
 ```
+Fetching the data from 'users' table
+```
+DESC USER;
+```
+| Field       | Type        | Null | Key | Default | Extra |
+|:--:|:--:|:--:|:--:|:--:|
+| FRIST_NAME  | varchar(25) | YES  |     | NULL    |       |
+| LAST_NAME   | varchar(25) | YES  |     | NULL    |       |
+| CUSTOMER_ID | int         | NO   | PRI | NULL    |       |
+| EMAIL_ID    | varchar(25) | YES  |     | NULL    |       |
+| PASSWORD    | varchar(25) | YES  |     | NULL    |       |
 
