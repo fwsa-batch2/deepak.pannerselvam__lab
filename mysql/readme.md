@@ -33,8 +33,9 @@ Fetching the data from 'users' table
 ```
 DESC USER;
 ```
+
 | Field       | Type        | Null | Key | Default | Extra |
-|:--:|:--:|:--:|:--:|:--:|
+|-------------|-------------|------|-----|---------|-------|
 | FRIST_NAME  | varchar(25) | YES  |     | NULL    |       |
 | LAST_NAME   | varchar(25) | YES  |     | NULL    |       |
 | CUSTOMER_ID | int         | NO   | PRI | NULL    |       |
