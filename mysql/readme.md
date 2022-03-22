@@ -32,6 +32,7 @@ Fetching the data from 'users' table
 ```
 SELECT * FROM USERS;
 ```
+
 | USER_ID | NAME          | PASSWORD     | CONFIRM_PASSWORD | NUMBER     |
 |:--:|:--:|:--:|:--:|:--:|
 |       1 | DEEPAK_PANNER | DEEPAK@123   | DEEPAK@123       | 8925003062 |
