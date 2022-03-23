@@ -321,6 +321,7 @@ INSERT INTO REVIEW VALUES(3,3.00,'I LIKE A PAGE');
 ```
 ```
 SELECT *FROM REVIEW;
+```
 
 
 | CUSTOMER_ID | RATING | FEEDBACK                          |
@@ -329,3 +330,4 @@ SELECT *FROM REVIEW;
 |           2 |      4 | GOOD                              |
 |           3 |      3 | I LIKE A PAGE                     |
 |           4 |      5 | I LOVE THIS                       |
+
