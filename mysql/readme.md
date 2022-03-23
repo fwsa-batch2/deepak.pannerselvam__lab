@@ -331,4 +331,6 @@ SELECT *FROM REVIEW;
 |           3 |      3 | I LIKE A PAGE                     |
 |           4 |      5 | I LOVE THIS                       |
 
+## ER MODEL
+
 ![IMG_20220318_184711](https://user-images.githubusercontent.com/72603598/159658930-757cf649-0f2f-4634-8dde-5f31732d70ab.jpg)
