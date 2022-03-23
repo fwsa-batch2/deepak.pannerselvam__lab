@@ -334,3 +334,5 @@ SELECT *FROM REVIEW;
 ## ER MODEL
 
 ![IMG_20220318_184711](https://user-images.githubusercontent.com/72603598/159658930-757cf649-0f2f-4634-8dde-5f31732d70ab.jpg)
+## EER MODEL
+![Screenshot from 2022-03-23 14-23-03](https://user-images.githubusercontent.com/72603598/159662202-a4bc11aa-fa1a-4a23-b19a-d422ea7e8516.jpg)
