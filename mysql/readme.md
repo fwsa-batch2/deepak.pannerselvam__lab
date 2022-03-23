@@ -4,11 +4,11 @@ CREATE DATABASES 'SHOWROOM'
 ```
 CREATE DATABASES SHOWROOM;
 ```
-CREATION OF TABLE 01-'USERs'
+CREATION OF TABLE 01-'USERS'
 ```
 CREATE TABLE USERS(USER_ID INT(10) PRIMARY KEY,NAME VARCHAR(25),PASSWORD VARCHAR(25),CONFIRM_PASSWORD VARCHAR(25),NUMBER BIGINT(10));
 ```
-DESC USER;
+DESC USERS;
 
 | Field            | Type        | Null | Key | Default | Extra |
 |:--:|:--:|:--:|:--:|:--:|:--:|
@@ -30,9 +30,9 @@ INSERT INTO USERS VALUES(0003,'SARAVAN','SARAVAN@123','SARAVAN@123',8925003063);
 INSERT INTO USERS VALUES(0004,'KICTHICK','KARTHICK@123','KARTHICK@123',8925003064);
 ```
 Fetching the data from 'users' table
-```
+
 SELECT * FROM USER;
-```
+
 
 | USER_ID | NAME          | PASSWORD     | CONFIRM_PASSWORD | NUMBER     |
 |---------|---------------|--------------|------------------|------------|
