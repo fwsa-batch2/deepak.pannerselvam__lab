@@ -1,14 +1,14 @@
-#BMW_SHOWROOM
+#  BMW_SHOWROOM
 
 CREATE DATABASES 'SHOWROOM'
 ```
 CREATE DATABASES SHOWROOM;
 ```
-CREATION OF TABLE 01-'USER'
+CREATION OF TABLE 01-'USERS'
 ```
 CREATE TABLE USERS(USER_ID INT(10) PRIMARY KEY,NAME VARCHAR(25),PASSWORD VARCHAR(25),CONFIRM_PASSWORD VARCHAR(25),NUMBER BIGINT(10));
 ```
-DESC USER;
+DESC USERS;
 
 | Field            | Type        | Null | Key | Default | Extra |
 |:--:|:--:|:--:|:--:|:--:|:--:|
@@ -19,7 +19,7 @@ DESC USER;
 | NUMBER           | bigint      | YES  |     | NULL    |       |
 
 
-INSERTION OF RECORDS INTO 'USER' TABLE
+INSERTION OF RECORDS INTO 'USERs' TABLE
 ```
 INSERT INTO USERS VALUES(0001,'DEEPAK_PANNER','DEEPAK@123','DEEPAK@123',8925003062);
 ```
@@ -30,9 +30,9 @@ INSERT INTO USERS VALUES(0003,'SARAVAN','SARAVAN@123','SARAVAN@123',8925003063);
 INSERT INTO USERS VALUES(0004,'KICTHICK','KARTHICK@123','KARTHICK@123',8925003064);
 ```
 Fetching the data from 'users' table
-```
+
 SELECT * FROM USER;
-```
+
 
 | USER_ID | NAME          | PASSWORD     | CONFIRM_PASSWORD | NUMBER     |
 |---------|---------------|--------------|------------------|------------|
@@ -70,9 +70,9 @@ INSERT INTO CUSTOMER VALUES('SATHISH','KUMER',0002,'HIGHTSATHISH@GMAIL','SATHISH
 ```
  INSERT INTO CUSTOMER VALUES('SARAVAN','KUMER',0003,'SARAVAN@GMAIL','SARAVAN@123');
 ```
-```
+
 SELECT *FROM CUSTOMER;
-```
+
 | FRIST_NAME | LAST_NAME | CUSTOMER_ID | EMAIL_ID           | PASSWORD     |
 |------------|-----------|-------------|--------------------|--------------|
 | DEEPAK     | PANNER    |           1 | DEEPAKTHIRUP@GMAIL | DEEPAK@123   |
@@ -109,9 +109,9 @@ INSERT INTO DEALER VALUES(0011,0001,'DEEPAK','PANNER','DEEPAK@123',8925003062,'C
 ```
 INSERT INTO DEALER VALUES(0013,0003,'SARAVAN','KUMER','SARAVAN@123',8925003063,'CHENNAI');
 ```
-```
+
 SELECT *FROM DEALER;
-```
+
 | DEALER_ID | USER_ID | FIRST_NAME | LAST_NAME | PASSWORD     | NUMBER     | ADDRESS |
 |-----------|---------|------------|-----------|--------------|------------|---------|
 |        11 |       1 | DEEPAK     | PANNER    | DEEPAK@123   | 8925003062 | CHENNAI |
@@ -144,9 +144,9 @@ INSERT INTO VEHICLE VALUES('BMW','SERIES01',2000000,0021,11);
 ```
 INSERT INTO VEHICLE VALUES('BMW','SERIES03',4000000,0023,13);
 ```
-```
+
 SELECT *FROM VEHICLE;
-```
+
 
 | VEH_NAME | VEH_MODEL | VEH_COST | VEH_ID | DEALER_ID |
 |----------|-----------|----------|--------|-----------|
@@ -181,9 +181,9 @@ INSERT INTO IMAGE VALUES(02,22,'BMW_YELLOW',32);
 ```
 INSERT INTO IMAGE VALUES(03,23,'BMW_BLUE',33);
 ```
-```
+
 SELECT *FROM IMAGE;
-```
+
 
 | IMG_ID | VEH_ID | IMG_NAME   | DEF_IMG |
 |--------|--------|------------|---------|
@@ -242,9 +242,9 @@ INSERT INTO TAX VALUES(1002,16.00,'HEIGHT');
 ```
 INSERT INTO TAX VALUES(1003,8.00,'LOW');
 ```
-```
+
 SELECT *FROM TAX;
-```
+
 
 | TAX_ID | TAX  | STATUS |
 |--------|------|--------|
@@ -284,9 +284,9 @@ INSERT INTO SALES VALUES(3,23,3,3,1003,'2021-03-22','2021-04-22');
 ```
 INSERT INTO SALES VALUES(3424,4,4,1004,'2021-03-27','2021-04-27');
 ```
-```
+
 SELECT *FROM SALES;
-```
+
 
 | SALES_ID | VEH_ID | CUSTOMER_ID | SHOW_ID | TAX_ID | ORD_DATE   | DEL_DATE   |
 |----------|--------|-------------|---------|--------|------------|------------|
@@ -319,9 +319,9 @@ INSERT INTO REVIEW VALUES(1,4.03,'REAL I FLAT GOOD WEB SITE FOR CAR');
 ```
 INSERT INTO REVIEW VALUES(3,3.00,'I LIKE A PAGE');
 ```
-```
+
 SELECT *FROM REVIEW;
-```
+
 
 
 | CUSTOMER_ID | RATING | FEEDBACK                          |
@@ -331,3 +331,9 @@ SELECT *FROM REVIEW;
 |           3 |      3 | I LIKE A PAGE                     |
 |           4 |      5 | I LOVE THIS                       |
 
+## ER MODEL
+
+![IMG_20220318_184711](https://user-images.githubusercontent.com/72603598/159658930-757cf649-0f2f-4634-8dde-5f31732d70ab.jpg)
+## EER MODEL
+
+![Screenshot from 2022-03-25 15-41-18](https://user-images.githubusercontent.com/72603598/160101352-d92309a6-8072-4dff-9793-d4710ffe6dc8.jpg)
